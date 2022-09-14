@@ -5,15 +5,21 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import edu.ucne.prestamospersonales.data.dao.OcupacionDao
+import edu.ucne.prestamospersonales.data.dao.PersonaDao
 import edu.ucne.prestamospersonales.model.Ocupacion
+import edu.ucne.prestamospersonales.model.Persona
 
 @Database(
-    entities = [Ocupacion::class],
+    entities = [
+        Ocupacion::class,
+        Persona::class
+    ],
     version = 2,
     exportSchema = false
 )
 abstract class AppDataBase : RoomDatabase() {
     abstract val ocupacionDao: OcupacionDao
+    abstract val personaDao: PersonaDao
 
     companion object {
         @Volatile
@@ -27,7 +33,7 @@ abstract class AppDataBase : RoomDatabase() {
                         Room.databaseBuilder(
                             context.applicationContext,
                             AppDataBase::class.java,
-                            "ocup_database.db"
+                            "prestamos_personales.db"
                         ).fallbackToDestructiveMigration().build()
                     }
                     INSTANCE = instance

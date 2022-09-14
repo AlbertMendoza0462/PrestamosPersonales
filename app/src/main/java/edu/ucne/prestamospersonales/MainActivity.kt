@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import edu.ucne.prestamospersonales.ui.Persona.PersonaScreen
 import edu.ucne.prestamospersonales.ui.ocupacion.OcupacionScreen
 import edu.ucne.prestamospersonales.ui.theme.PrestamosPersonalesTheme
 
@@ -24,7 +25,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    OcupacionScreen(context = applicationContext)
+                    PersonaScreen(context = applicationContext, context1 = this)
                 }
             }
         }
@@ -33,8 +34,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-    Text(text = name,
-    fontSize = 30.sp,
+    Text(
+        text = name,
+        fontSize = 30.sp,
     )
 }
 
