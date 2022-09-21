@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun OcupacionScreen(context: Context) {
-    val db = AppDataBase.getInstance(context)
+
     val scope = rememberCoroutineScope()
     var descripcion by remember { mutableStateOf("") }
     var salario by remember { mutableStateOf("") }
@@ -88,12 +88,12 @@ fun OcupacionScreen(context: Context) {
                         bottom = 12.dp
                     ), onClick = {
                         scope.launch {
-                            db.ocupacionDao.insertOcupacion(
-                                Ocupacion(
-                                    Descripcion = descripcion,
-                                    Salario = salario.toDouble()
-                                )
-                            )
+//                            db.ocupacionDao.insertOcupacion(
+//                                Ocupacion(
+//                                    Descripcion = descripcion,
+//                                    Salario = salario.toDouble()
+//                                )
+//                            )
                         }
                     }) {
                         Icon(

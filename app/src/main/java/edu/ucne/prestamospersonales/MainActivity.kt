@@ -11,10 +11,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import edu.ucne.prestamospersonales.ui.Persona.PersonaScreen
-import edu.ucne.prestamospersonales.ui.ocupacion.OcupacionScreen
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
+import edu.ucne.prestamospersonales.ui.persona.PersonaScreen
+import edu.ucne.prestamospersonales.ui.prestamo.ConsultaPrestamoScreen
+import edu.ucne.prestamospersonales.ui.prestamo.PrestamoScreen
 import edu.ucne.prestamospersonales.ui.theme.PrestamosPersonalesTheme
+import edu.ucne.prestamospersonales.utils.Screen
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +32,20 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    PersonaScreen(context = applicationContext, context1 = this)
+                    //PersonaScreen(context = applicationContext, context1 = this)
+                    val navHostController = rememberNavController()
+
+                    NavHost(navController = navHostController, startDestination = Screen.PrestamoScreen.route){
+                        composable(Screen.PrestamoScreen.route){
+                            PrestamoScreen(navHostController = navHostController)
+                        }
+                        composable(Screen.ConsultaPrestamoScreen.route){
+                            ConsultaPrestamoScreen(navHostController = navHostController)
+                        }
+                        composable(Screen.PersonaScreen.route){
+                            PersonaScreen(navHostController = navHostController)
+                        }
+                    }
                 }
             }
         }
